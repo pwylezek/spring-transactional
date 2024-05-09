@@ -1,1 +1,1 @@
-# spring-transactional
+# Repository for transactional mechanism in Spring comparison
