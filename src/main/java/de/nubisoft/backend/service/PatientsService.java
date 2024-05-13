@@ -60,13 +60,12 @@ public class PatientsService {
         return new PatientV2(getPatientV1ById(id), patientDocumentsRepository.findAllByPatientIdId(id));
     }
 
-    public List<PatientDocument> getPatientExternalDocuments(String patientId, Integer count) {
+    public List<PatientDocument> getPatientExternalResults(String patientId, Integer count) {
         var patient = getPatientV1ById(patientId);
-        return fetchPatientDocumentsFromVerySlowExternalService(patient.externalId(), count);
+        return fetchPatientResultsFromVerySlowExternalService(patient.externalId(), count);
     }
 
-
-    private List<PatientDocument> fetchPatientDocumentsFromVerySlowExternalService(String patientExternalId, Integer count) {
+    private List<PatientDocument> fetchPatientResultsFromVerySlowExternalService(String patientExternalId, Integer count) {
 
         try {
             log.info("Fetching patient documents from external service. Patient id: {}", patientExternalId);

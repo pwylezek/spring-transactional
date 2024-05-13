@@ -30,6 +30,11 @@ public class PatientsController {
         return this.patientsService.getPatientV1ById(id);
     }
 
+    @GetMapping("v1/patients/{id}/external-results")
+    List<PatientDocument> getPatientExternalDocuments(@PathVariable String id, @RequestParam Integer count) {
+        return this.patientsService.getPatientExternalResults(id, count);
+    }
+
     @PostMapping("v2/patients")
     PatientV2 savePatientV2(@RequestBody PatientV2 patient) {
         return this.patientsService.savePatientV2(patient);
@@ -38,10 +43,5 @@ public class PatientsController {
     @GetMapping("v2/patients/{id}")
     PatientV2 getPatientV2(@PathVariable String id) {
         return this.patientsService.getPatientV2ById(id);
-    }
-
-    @GetMapping("v2/patients/{id}/external-documents")
-    List<PatientDocument> getPatientExternalDocuments(@PathVariable String id, @RequestParam Integer count) {
-        return this.patientsService.getPatientExternalDocuments(id, count);
     }
 }
