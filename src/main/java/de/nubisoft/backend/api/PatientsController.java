@@ -4,6 +4,7 @@ package de.nubisoft.backend.api;
 import de.nubisoft.backend.domain.PatientDocument;
 import de.nubisoft.backend.domain.PatientV1;
 import de.nubisoft.backend.domain.PatientV2;
+import de.nubisoft.backend.exception.SavePatientException;
 import de.nubisoft.backend.service.PatientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class PatientsController {
     }
 
     @PostMapping("v1/patients")
-    PatientV1 savePatientV1(@RequestBody PatientV1 patient) {
+    PatientV1 savePatientV1(@RequestBody PatientV1 patient) throws SavePatientException {
         return this.patientsService.savePatientV1(patient);
     }
 
