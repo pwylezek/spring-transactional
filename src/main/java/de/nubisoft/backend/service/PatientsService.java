@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
@@ -33,12 +34,14 @@ public class PatientsService {
         this.patientDocumentsRepository = patientDocumentsRepository;
     }
 
+    @Transactional
     public PatientV1 savePatientV1(PatientV1 patient) {
         log.info("Saving new patient: {}", patient);
         var id = patientsRepository.save(patient);
         return getPatientV1ById(id);
     }
 
+    @Transactional
     public PatientV1 savePatientV1OrThrowIfError(PatientV1 patient) throws SavePatientException {
         log.info("Saving new patient: {}", patient);
         var id = patientsRepository.saveOrThrowIfError(patient);
@@ -49,6 +52,7 @@ public class PatientsService {
         return patientsRepository.getById(id).orElseThrow(NotFoundException::new);
     }
 
+    @Transactional
     public PatientV2 savePatientV2(PatientV2 patient) {
         log.info("Saving new patient: {}", patient);
         var id = patientsRepository.save(patient.patient());
@@ -61,8 +65,10 @@ public class PatientsService {
     }
 
     public List<PatientDocument> getPatientExternalResults(String patientId, Integer count) {
+        // POBIERZ POŁĄCZENIE
         var patient = getPatientV1ById(patientId);
         return fetchPatientResultsFromVerySlowExternalService(patient.externalId(), count);
+        // ZWRÓC POŁĄCZENIE
     }
 
     private List<PatientDocument> fetchPatientResultsFromVerySlowExternalService(String patientExternalId, Integer count) {
