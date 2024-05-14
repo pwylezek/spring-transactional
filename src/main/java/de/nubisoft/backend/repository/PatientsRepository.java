@@ -16,7 +16,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
-@Transactional
 @Repository
 public class PatientsRepository {
 
@@ -29,6 +28,7 @@ public class PatientsRepository {
         this.addressesRepository = addressesRepository;
     }
 
+    @Transactional
     public String save(PatientV1 patient) {
         var id = UUID.randomUUID().toString();
         var addressId = addressesRepository.save(patient.address());
@@ -42,6 +42,7 @@ public class PatientsRepository {
         return id;
     }
 
+    @Transactional
     public String saveOrThrowIfError(PatientV1 patient) throws SavePatientException {
         try {
             return save(patient);
