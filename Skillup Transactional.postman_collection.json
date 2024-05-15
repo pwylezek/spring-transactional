@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "c31815d0-5b9f-4ee8-96d3-901363f1395b",
+		"name": "Skillup Transactional",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "7613077"
+	},
+	"item": [
+		{
+			"name": "Save patient v1",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"externalId\": null,\n    \"name\": \"Max Mustermann\",\n    \"address\": {\n        \"address\": \"Local Street, 12, New York\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get patient v1",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/patients/b4cedfd7-d6a5-40ea-9551-c94f3b13c991",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"patients",
+						"b4cedfd7-d6a5-40ea-9551-c94f3b13c991"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get patient v1 external results",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/patients/311f51f4-2164-4f3a-949f-b473236c46c0/external-results?count=5",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"patients",
+						"311f51f4-2164-4f3a-949f-b473236c46c0",
+						"external-results"
+					],
+					"query": [
+						{
+							"key": "count",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save patient v2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"patient\": {\n        \"externalId\": \"1\",\n        \"name\": \"Max Mustermann\",\n        \"address\": {\n            \"address\": \"Local Street, 12, New York\"\n        }\n    },\n    \"documents\": [\n        {\n            \"content\": \"DRIVER LICENCE\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v2/patients",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
+						"patients"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get patient v2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v2/patients/ec71708a-5a8e-4151-ba53-b02f69de7d01",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v2",
+						"patients",
+						"ec71708a-5a8e-4151-ba53-b02f69de7d01"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
